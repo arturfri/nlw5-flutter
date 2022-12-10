@@ -5,22 +5,28 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class QuestionIndicatorWidget extends StatelessWidget {
-  const QuestionIndicatorWidget({Key? key}) : super(key: key);
+  final int currentPage;
+  final int length;
+  
+  const QuestionIndicatorWidget({Key? key, 
+    required this.currentPage, 
+    required this.length,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            Text("Questão 04", style: AppTextStyles.body),
-            Text("de 10", style: AppTextStyles.body),
+            Text("Questão ${currentPage}", style: AppTextStyles.body),
+            Text("de ${length}", style: AppTextStyles.body),
           ],),
           SizedBox(height: 16), 
-          ProgressIndicatorWidget(value: 0.4)
+          ProgressIndicatorWidget(value: currentPage/length)
         ],
       ),
     );
